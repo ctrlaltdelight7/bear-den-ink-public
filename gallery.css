@@ -1,0 +1,75 @@
+
+@font-face{font-family:"BearDenHand";src:url("assets/caveat-500.ttf") format("truetype");font-style:normal;font-weight:500;font-display:swap}
+    :root{--bg:#09090b;--panel:#111114;--ink:#f0f0f5;--dim:#7e7e8a;--rule:#242428;--rule-light:rgba(240,240,245,.08);--ice:#c8d9ff;--ice-mid:#8fa8d4}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:-.022em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    ::selection{background:rgba(200,217,255,.18)}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--rule);border-radius:2px}
+    .atmos{position:fixed;inset:0;z-index:0;pointer-events:none}
+    .atmos-el{position:absolute;border-radius:50%;filter:blur(130px);opacity:.065;animation:drift 20s ease-in-out infinite alternate}
+    .atmos-a{width:760px;height:760px;background:#2c4bdd;top:-320px;right:-270px;animation-duration:24s;animation-delay:-8s}
+    .atmos-b{width:480px;height:480px;background:#6d28d9;bottom:-200px;left:-150px;animation-duration:18s}
+    @keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(28px,14px) scale(1.07)}}
+    .nav{position:fixed;top:0;inset:0;z-index:20;height:64px;display:flex;align-items:center;padding:0 36px}
+    .nav::before{content:"";position:absolute;inset:0;background:rgba(9,9,11,.72);backdrop-filter:blur(22px) saturate(150%);border-bottom:1px solid var(--rule-light)}
+    .nav-inner{max-width:1300px;width:100%;margin:0 auto;display:flex;justify-content:space-between;align-items:center;position:relative}
+    .brand{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:720;letter-spacing:.09em;color:var(--ice);text-transform:uppercase}
+    .brand-logo{width:36px;height:44px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.28))}
+    .brand-name{font-family:"BearDenHand",cursive;font-size:19px;font-weight:500;letter-spacing:.055em;color:#eee1a1;text-shadow:0 1px 18px rgba(231,205,119,.12)}
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:12px;color:rgba(240,240,245,.5);letter-spacing:.04em}
+    .nav-links a{transition:color .2s}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-links .divider{opacity:.22}
+    .nav-book{background:#e8d686;color:#15130d;font-weight:650;padding:7px 16px;border-radius:999px;font-size:11px;letter-spacing:.04em;transition:opacity .2s}
+    .nav-book:hover{opacity:.85}
+    .eyebrow-text{font-size:11px;font-weight:650;letter-spacing:.13em;color:var(--ice-mid);text-transform:uppercase}
+    .page-header{padding:clamp(90px,14vw,140px) max(36px,calc((100vw - 1200px)/2)) 52px;position:relative;z-index:1}
+    .page-header h1{font-size:clamp(52px,8vw,112px);font-weight:720;line-height:.88;letter-spacing:-.07em;margin:14px 0 18px}
+    .page-header p{color:var(--dim);font-size:18px;max-width:480px;line-height:1.4;margin-bottom:26px}
+    .social-bar{display:flex;gap:10px;flex-wrap:wrap}
+    .soc-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border:1px solid rgba(200,217,255,.15);border-radius:999px;font-size:13px;font-weight:600;transition:.25s all}
+    .soc-btn:hover{border-color:rgba(200,217,255,.35);transform:translateY(-2px)}
+    .soc-btn.ig{background:rgba(200,217,255,.06)}
+    .soc-btn.fb{background:rgba(66,103,178,.1);border-color:rgba(66,103,178,.28)}
+    .soc-btn.tt{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15)}
+    .soc-btn.book{background:rgba(200,217,255,.08);border-color:rgba(200,217,255,.25)}
+    .gallery-grid{padding:0 max(36px,calc((100vw - 1200px)/2)) 100px;columns:3 260px;column-gap:14px;position:relative;z-index:1}
+    .gallery-item{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;background:var(--panel);border:1px solid var(--rule);transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+    .gallery-item:hover{border-color:rgba(200,217,255,.15);transform:translateY(-4px)}
+    .gallery-item img{width:100%;display:block;filter:grayscale(.05) contrast(1.05);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+    .gallery-item:hover img{transform:scale(1.03)}
+    .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,9,11,.72) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:16px 14px}
+    .gallery-item:hover .gallery-overlay{opacity:1}
+    .gallery-overlay span{font-size:12px;color:rgba(240,240,245,.65)}
+    /* Lightbox */
+    .lb{position:fixed;inset:0;z-index:100;background:rgba(9,9,11,.97);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+    .lb.open{opacity:1;pointer-events:all}
+    .lb-img{max-width:min(92vw,900px);max-height:86svh;object-fit:contain;border:1px solid var(--rule);box-shadow:0 40px 90px rgba(0,0,0,.6)}
+    .lb-close{position:absolute;top:20px;right:24px;font-size:30px;color:var(--dim);cursor:pointer;transition:color .2s;line-height:1}
+    .lb-close:hover{color:var(--ink)}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:24px;color:var(--dim);cursor:pointer;padding:18px;transition:color .2s;user-select:none}
+    .lb-nav:hover{color:var(--ink)}
+    .lb-prev{left:16px}.lb-next{right:16px}
+    .lb-caption{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--dim);white-space:nowrap}
+    footer{padding:26px max(36px,calc((100vw - 1200px)/2));border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative;z-index:1}
+    .footer-left{font-size:11px;color:var(--dim)}
+    .footer-right{display:flex;align-items:center;gap:16px;font-size:11px;color:var(--dim)}
+    .footer-right a:hover{color:var(--ice)}
+    @media(max-width:600px){.gallery-grid{columns:2 160px}.nav-links a:not(.nav-book){display:none}.nav{padding:0 18px}.nav-inner{gap:10px}.brand{gap:7px;min-width:0}.brand-logo{width:30px;height:38px}.brand-name{font-size:15px;letter-spacing:.035em;white-space:nowrap}.nav-links{gap:8px;font-size:11px}.nav-book{padding:7px 11px;font-size:10px;white-space:nowrap}}
+
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}}
+
+    /* Unified Bear Den Ink palette */
+    :root{--ice:#e8d686;--ice-mid:#c1a15a}
+    .atmos-a{background:#5b431f}
+    .atmos-b{background:#7a4b22}
+    ::selection{background:rgba(232,214,134,.22)}
+    .soc-btn{border-color:rgba(232,214,134,.18)}
+    .soc-btn:hover{border-color:rgba(232,214,134,.48)}
+    .soc-btn.ig{background:rgba(232,214,134,.07)}
+    .soc-btn.fb{background:rgba(142,111,42,.12);border-color:rgba(142,111,42,.3)}
+    .soc-btn.book{background:rgba(232,214,134,.1);border-color:rgba(232,214,134,.28)}
+    .gallery-item:hover{border-color:rgba(232,214,134,.22)}
